@@ -8,7 +8,78 @@
 </head>
 <body>
 
-  {{msg}}  
+  <h2>GuestBook</h2>
 
+  <form method="post"> 
+    {{ forms.csrf_token() }}
+
+    <p>        
+      {{ forms.name.label }} : {{ forms.name }}
+      
+      {% for error in forms.name.errors %}
+        {{error}}
+      {% endfor %}
+    </p>
+    <p>
+      {{ forms.email.label }} : {{ forms.email }}
+      
+      {% for error in forms.email.errors %}
+        {{error}}
+      {% endfor %}
+        
+    </p>
+    <p>
+      {{ forms.message.label }} <br>
+      {{forms.message}}
+
+      {% for error in forms.message.errors %}
+        {{error}}
+      {% endfor %}
+        
+    </p>
+    <p>
+      {{ forms.recaptcha }}
+    </p>
+
+    <p>
+      {{ forms.submit }}
+    </p>
+
+
+  </form>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for msg in comment %}
+        <tr>
+          <td>{{msg.name}}</td>
+          <td>{{msg.email}}</td>
+          <td>{{msg.message}}</td>
+          <td>
+            <a href="{{ url_for('delete', guestId=msg._id) }}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+        
+
+    </tbody>
+  </table>
+
+  
+  {% for message in messages %}
+    <p>
+      {{message}}
+    </p>
+  {% endfor %}
+    
 </body>
 </html>
