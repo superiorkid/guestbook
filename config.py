@@ -3,5 +3,5 @@ import os
 class Config(object):
   SECRET_KEY = 'very-hard-to-guess'
   MONGO_URI = "mongodb://localhost:27017/flask_guestbook"
-  COPY_SITE_KEY = '6LdrP2MeAAAAAGdQT1WlfMBcz-4QKkDh_kIeCI62'
-  COPY_SECRET_KEY = '6LdrP2MeAAAAAPC8aNvKdFsWqclBJh_dBGGNSM1j'
+  RECAPTCHA_PUBLIC_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+  RECAPTCHA_PRIVATE_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
