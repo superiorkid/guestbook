@@ -4,7 +4,7 @@ simple project to learn basics mongodb with flask.
 
 ## Demo
 
-Insert gif or link to demo
+![](https://github.com/superiorkid/guestbook/blob/main/results/demo.gif) 
 
 
 ## Run Locally
@@ -22,7 +22,6 @@ Go to the project directory
 ```
 
 import mongodb collection
-
 ```bash
 mongoimport --db flask_guestbook --collection guestbook --file guestbook.json --jsonArray
 ```
