@@ -57,36 +57,26 @@
         <th>Name</th>
         <th>Email</th>
         <th>Message</th>
-        <th>action</th>
       </tr>
     </thead>
     <tbody>
     
-    {% if _guestbook %}
-      {% for msg in _guestbook %}
+      
+      {% for post in posts %}  
         <tr>
           <td>{{ loop.index + pagination.skip }}</td>
-          <td>{{msg.name}}</td>
-          <td>{{msg.email}}</td>
-          <td>{{msg.message}}</td>
-          <td>
-            <a href="{{ url_for('delete', guestId=msg._id) }}">Delete</a>
-          </td>
-        </tr>
-      {% endfor %}      
-      <!-- {{ pagination.links}} -->
+          <td>{{post.name}}</td>
+          <td>{{post.email}}</td>
+          <td>{{post.message}}</td>
     
-    {% if pagination.has_next %}
-      <a href="{{ url_for('messages', page=pagination.page + 1) }}">Next &raquo;</a>
-    {% endif %}
-      
-
-    {% endif %}
+        </tr>      
+      {% endfor %}
 
 
     </tbody>
   </table>
 
+  {{ pagination.links}}
 
 
   {{bootstrap.load_js()}}    
