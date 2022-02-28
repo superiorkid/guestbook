@@ -1,5 +1,5 @@
 from app import app, db, fake
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, url_for
 from .forms import GuestForm
 from bson.objectid import ObjectId
 from flask_paginate import Pagination, get_page_parameter
@@ -42,3 +42,8 @@ def guestbook():
     pagination=pagination
     )
   
+  
+@app.route('/delete/<guestID>')
+def delete(guestID):
+  db.guestbook.delete_one({'_id': ObjectId(guestID)})
+  return redirect(url_for('guestbook'))
