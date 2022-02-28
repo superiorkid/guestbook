@@ -27,13 +27,14 @@ def guestbook():
   forms.email.data = fake.email()
   forms.message.data = fake.text()
   
+  
   # paginate
   page = request.args.get(get_page_parameter(), type=int, default=1)
   per_page = 10
   collection = db.guestbook
   total = collection.count_documents({})
   all_guest = collection.find().sort('_id', pymongo.DESCENDING).skip((page - 1) * per_page).limit(per_page)
-  pagination = Pagination(page=page, per_page=per_page, total=total, record_name="allguest")
+  pagination = Pagination(page=page, per_page=per_page, total=total, record_name="all_guest")
   
   return render_template(
     'index.html',

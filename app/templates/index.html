@@ -7,80 +7,89 @@
   <title>Simple guestbook</title>
 
   {{bootstrap.load_css()}}
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+  </head>
 <body>
 
-  <h2>GuestBook</h2>
-
-  <form method="post"> 
-    {{ forms.csrf_token() }}
-
-    <p>        
-      {{ forms.name.label }} : {{ forms.name }}
-      
-      {% for error in forms.name.errors %}
-        {{error}}
-      {% endfor %}
-    </p>
-    <p>
-      {{ forms.email.label }} : {{ forms.email }}
-      
-      {% for error in forms.email.errors %}
-        {{error}}
-      {% endfor %}
-        
-    </p>
-    <p>
-      {{ forms.message.label }} <br>
-      {{forms.message}}
-
-      {% for error in forms.message.errors %}
-        {{error}}
-      {% endfor %}
-        
-    </p>
-    <p>
-      {{ forms.recaptcha }}
-    </p>
-
-    <p>
-      {{ forms.submit }}
-    </p>
-
-
-  </form>
-  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <td>#</td>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Message</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="jumbotron jumbotron-fluid text-sm-center p-a-2">
+    <h1 class="display-5 p-a-2 m-t-2">Simple guestbook</h1>
+  </div>
+  
+  <div class="container-fluid mt-5">
     
-      
-      {% for post in posts %}  
-        <tr>
-          <td>{{ loop.index + pagination.skip }}</td>
-          <td>{{post.name}}</td>
-          <td>{{post.email}}</td>
-          <td>{{post.message}}</td>
-          <td><a href="{{  url_for('delete', guestID=post._id) }}">delete</a></td>
-        </tr>      
-      {% endfor %}
+    <div class="container mb-5">
+      <form method="post">
 
+        {{forms.csrf_token()}}
 
-    </tbody>
-  </table>
+        <div class="form-group">
+          {{forms.name.label}}
+          {{forms.name(class="form-control")}}
+          
+          {% for error in form.name.errors %}
+            {{error}}
+          {% endfor %}
+            
+        </div>
+        <div class="form-group">
+          {{forms.email.label}}
+          {{forms.email(class="form-control")}}
 
-  {{ pagination.links}}
+          {% for error in form.email.errors %}
+            {{error}}
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{forms.message.label}}
+          {{forms.message(class="form-control")}}
 
+          {% for error in form.message.errors %}
+            {{error}}
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{forms.recaptcha}}
+        </div>
 
+        {{forms.submit(class="btn btn-primary")}}
+
+      </form>
+    </div>
+
+    <div>
+      <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <td>#</td>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          
+          {% for post in posts %}  
+            <tr>
+              <td>{{ loop.index + pagination.skip }}</td>
+              <td>{{post.name}}</td>
+              <td>{{post.email}}</td>
+              <td>{{post.message}}</td>
+              <td><a href="{{  url_for('delete', guestID=post._id) }}">delete</a></td>
+            </tr>      
+          {% endfor %}
+    
+    
+        </tbody>
+      </table>
+      {{pagination.info}}
+      {{ pagination.links}}
+    
+    
+      </div>
+    </div>
   {{bootstrap.load_js()}}    
+
 
 </body>
 </html>

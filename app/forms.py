@@ -7,5 +7,5 @@ class GuestForm(FlaskForm):
   name = StringField('Name', validators=[DataRequired()])
   email = StringField('Email', validators=[DataRequired(), Email()])
   message = TextAreaField('Messages', validators=[DataRequired()])
-  recaptcha = RecaptchaField('Recapthha')
+  recaptcha = RecaptchaField('Recaptcha')
   submit = SubmitField('Submit')
